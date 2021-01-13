@@ -1,40 +1,43 @@
 "use strict";
+let arr = [];
+let map = new Map();
 
 // Sort in ascending order
-const up = function (arr) {
-  let newArr = arr.sort(function(a, b)
-  {
-      return a - b;
+function up(arr) {
+  let newArr = arr.sort(function (a, b) {
+    return a - b;
   });
+
+  console.log("up", newArr);
   return newArr;
 }
+
 // Sort in descending order
-const down = function(arr) {
-  let newArr = arr.sort(function(a, b)
-  {
-      return b - a;
+function down(arr) {
+  let newArr = arr.sort(function (a, b) {
+    return b - a;
   });
   return newArr;
 }
 
 // Max
-const findMax = function () {
+function findMax() {
   return Math.max(...arr);
-};
+}
 
 // Min
-const findMin = function () {
+function findMin() {
   return Math.min(...arr);
-};
+}
 
 // Sum
-const findSum = function () {
+function findSum() {
   const sum = arr.reduce((a, b) => a + b, 0);
   return sum;
-};
+}
 
 // Median
-const findMedian = function () {
+function findMedian() {
   let arr1 = arr.sort(function (a, b) {
     a - b;
   });
@@ -44,11 +47,10 @@ const findMedian = function () {
   } else {
     return (arr1[mid - 1] + arr1[mid]) / 2;
   }
-  // console.log(median);
-};
+}
 
 // Deviation
-const findDeviation = function () {
+function findDeviation() {
   const mean = findMean();
   let sumOfSquares = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -56,78 +58,116 @@ const findDeviation = function () {
   }
   const val = sumOfSquares / arr.length;
   return Math.sqrt(val);
-};
+}
 
 // Mean
 const findMean = function () {
-  const sum = findSum();
-  const mean = sum / arr.length;
+  if (map.get(5) == undefined) {
+    map.set(5, findSum());
+  }
+  const mean = map.get(5) / arr.length;
   return mean;
 };
 
-
 // CONNECTING HTML ELEMENTS WITH JS
-const inputField = document.querySelector('.input');
-const outputField = document.querySelector('.result');
-let arr = [];
+const inputField = document.querySelector(".inputData");
+const outputField = document.querySelector(".output");
+const btnSubmit = document.querySelector(".btnSubmit");
+const optionsMenu = document.querySelector(".hidden");
+const dropdown = document.querySelector(".operation");
 
+const toggleOptionsMenu = function (flag) {
+  flag == 1 ? (optionsMenu.style.display = "") : (optionsMenu.style = "none");
+};
 
-// ADDING EVENT LISTENERS TO BUTTONS
+btnSubmit.addEventListener("click", function () {
+  arr = inputField.value.split(" ");
 
-document.querySelector('.btnSubmit').addEventListener('click',function(){
-  arr = [];
-  let strArray = inputField.value.split(' ');
-  for(let i = 0;i<strArray.length;i++){
-    arr.push(Number(strArray[i]));
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = Number(arr[i]);
+    if (isNaN(arr[i])) {
+      alert("Please re-enter your values!");
+      inputField.value = "";
+      arr = [];
+      toggleOptionsMenu(0);
+    }
   }
+  console.log(arr);
+  map.clear();
+  toggleOptionsMenu(1);
+  outputField.style.display = "none";
+  dropdown.value = "";
 });
 
+const analyzeData = function () {
+  let choice = Number(dropdown.value);
+  let ans;
+  console.log(arr);
+  switch (choice) {
+    case 1:
+      if (map.get(choice) == undefined) {
+        map.set(choice, up(arr));
+      }
+      console.log(up(arr));
+      ans = map.get(choice);
+      break;
+    case 2:
+      if (map.get(choice) == undefined) {
+        map.set(choice, down(arr));
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 3:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findMax());
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
 
-document.querySelector('.btnSortUp').addEventListener('click', function(){
-  let sorted = up(arr);
-  console.log('Sorted array', sorted);
-  outputField.innerHTML = sorted;
-});
+    case 4:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findMin());
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 5:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findSum().toFixed(3));
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 6:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findMean().toFixed(3));
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 7:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findMedian().toFixed(3));
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 8:
+      if (map.get(choice) == undefined) {
+        map.set(choice, findDeviation().toFixed(3));
+      }
+      ans = map.get(choice);
+      console.log(ans);
+      break;
+    case 0:
+      break;
+  }
 
+  ans = "Your result is : " + ans;
+  outputField.style.display = "";
+  outputField.innerHTML = ans;
+};
 
-document.querySelector('.btnSortDown').addEventListener('click', function(){
-  let sorted = down(arr);
-  console.log(sorted);
-  outputField.innerHTML = sorted;
-});
-
-document.querySelector('.btnFindMin').addEventListener('click', function(){
-  let min = findMin(arr);
-  console.log(min);
-  outputField.innerHTML = min;
-});
-
-document.querySelector('.btnFindMax').addEventListener('click', function(){
-  let max = findMax(arr);
-  console.log(max);
-  outputField.innerHTML = max;
-});
-
-document.querySelector('.btnFindSum').addEventListener('click', function(){
-  let sum = findSum(arr);
-  console.log(sum);
-  outputField.innerHTML = sum.toFixed(3);
-});
-
-document.querySelector('.btnFindMean').addEventListener('click', function(){
-  let mean = findMean(arr);
-  console.log(mean);
-  outputField.innerHTML = mean.toFixed(3);
-});
-
-document.querySelector('.btnFindMedian').addEventListener('click', function(){
-  let median = findMedian(arr);
-  console.log(median);
-  outputField.innerHTML = median.toFixed(3);
-});
-
-document.querySelector('.btnFindDeviation').addEventListener('click', function(){
-  let deviation = findDeviation(arr);
-  console.log(deviation);
-  outputField.innerHTML = deviation.toFixed(3);
-});
+dropdown.addEventListener("change", analyzeData);

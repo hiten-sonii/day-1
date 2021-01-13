@@ -6,26 +6,31 @@
     <title>Document</title>
   </head>
   <body>
-    <h2>Welcome to the Data Analysis Menu!</h2>
+    <h1>Welcome to the Data Analysis Menu!</h1>
 
     <h3>Please enter your array (space-separated values) :</h3>
-    <input class="input" type="text">   <button class="btnSubmit">Submit</button>
+    <input class="inputData" type="text"> 
+    <button class="btnSubmit">Submit</button>
     <br>
-    <br>
-    <div class="buttons">
-      <button class="btnSortUp">Sort Increasing</button><br><br>
-      <button class="btnSortDown">Sort Decreasing</button><br><br>
-      <button class="btnFindMin">Find Min</button><br><br>
-      <button class="btnFindMax">Find Max</button><br><br>
-      <button class="btnFindSum">Find Sum</button><br><br>
-      <button class="btnFindMean">Find Mean</button><br><br>
-      <button class="btnFindMedian">Find Median</button><br><br>
-      <button class="btnFindDeviation">Find Deviation</button><br><br>
+    
+    <div class="hidden" style=display:none>
+      <p style=font-size:20px>Select your desired operation : 
+        <select name="operation" class="operation" style=height:40px width=60px>
+          <option value="0"></option>
+          <option value="1">Sort increasing</option>
+          <option value="2">Sort decreasing</option>
+          <option value="3">Find max</option>
+          <option value="4">Find min</option>
+          <option value="5">Find sum</option>
+          <option value="6">Find mean</option>
+          <option value="7">Find median</option>
+          <option value="8">Find deviation</option>
+        </select>
+      </p>
     </div>
 
-    <div class = "output">
+    <div class = "output" style=display:none>
       <p>Your answer is : </p>
-      <p class = "result"></p>
     </div>
 
     <script src="day-1 modified.js"></script>
