@@ -5,7 +5,7 @@ for(let i=0;i<arr.length;i++){
     arr[i] = parseInt(arr[i]);
 }
 
-// Up
+// Sort in ascending order
 const up = function(){
     let newArr = arr.sort(function(a, b){
         a-b;
@@ -13,7 +13,7 @@ const up = function(){
     console.log(newArr);
 }
 
-// Down
+// Sort in descending order
 const down = function(){
     let newArr = arr.sort(function(a, b){
         b-a;
@@ -27,7 +27,7 @@ const findMax = function(){
     return Math.max(...arr);
 }
 
-// Mindoes sort mo
+// Min
 const findMin = function(){
     return Math.min(...arr);
 }
@@ -53,7 +53,7 @@ const findMedian = function(){
     // console.log(median);
 }
 
-// Median
+// Deviation
 const findDeviation = function(){
     const mean = findMean();
     let sumOfSquares = 0;
