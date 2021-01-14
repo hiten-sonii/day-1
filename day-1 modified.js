@@ -8,7 +8,6 @@ function up(arr) {
     return a - b;
   });
 
-  console.log("up", newArr);
   return newArr;
 }
 
@@ -72,15 +71,9 @@ const findMean = function () {
 // CONNECTING HTML ELEMENTS WITH JS
 const inputField = document.querySelector(".inputData");
 const outputField = document.querySelector(".output");
-const btnSubmit = document.querySelector(".btnSubmit");
-const optionsMenu = document.querySelector(".hidden");
 const dropdown = document.querySelector(".operation");
 
-const toggleOptionsMenu = function (flag) {
-  flag == 1 ? (optionsMenu.style.display = "") : (optionsMenu.style = "none");
-};
-
-btnSubmit.addEventListener("click", function () {
+function takeInput() {
   arr = inputField.value.split(" ");
 
   for (let i = 0; i < arr.length; i++) {
@@ -89,19 +82,18 @@ btnSubmit.addEventListener("click", function () {
       alert("Please re-enter your values!");
       inputField.value = "";
       arr = [];
-      toggleOptionsMenu(0);
     }
   }
   console.log(arr);
   map.clear();
-  toggleOptionsMenu(1);
-  outputField.style.display = "none";
-  dropdown.value = "";
-});
+}
 
 const analyzeData = function () {
   let choice = Number(dropdown.value);
   let ans;
+  if (arr.length == 0) {
+    alert("Input is empty!");
+  }
   console.log(arr);
   switch (choice) {
     case 1:
@@ -162,6 +154,7 @@ const analyzeData = function () {
       console.log(ans);
       break;
     case 0:
+      alert("Please select a valid option!");
       break;
   }
 
@@ -169,5 +162,3 @@ const analyzeData = function () {
   outputField.style.display = "";
   outputField.innerHTML = ans;
 };
-
-dropdown.addEventListener("change", analyzeData);
