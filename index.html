@@ -9,29 +9,30 @@
     <h1>Welcome to the Data Analysis Menu!</h1>
 
     <h3>Please enter your array (space-separated values) :</h3>
-    <input class="inputData" type="text"> 
-    <button class="btnSubmit">Submit</button>
-    <br>
-    
-    <div class="hidden" style=display:none>
-      <p style=font-size:20px>Select your desired operation : 
-        <select name="operation" class="operation" style=height:40px width=60px>
-          <option value="0"></option>
-          <option value="1">Sort increasing</option>
-          <option value="2">Sort decreasing</option>
-          <option value="3">Find max</option>
-          <option value="4">Find min</option>
-          <option value="5">Find sum</option>
-          <option value="6">Find mean</option>
-          <option value="7">Find median</option>
-          <option value="8">Find deviation</option>
-        </select>
-      </p>
-    </div>
+    <input class="inputData" type="text" oninput="takeInput()" />
+    <br />
 
-    <div class = "output" style=display:none>
-      <p>Your answer is : </p>
-    </div>
+    <p style="font-size: 18px">
+      Select your desired operation :
+      <select
+        name="operation"
+        class="operation"
+        style="height: 40px"
+        width="60px"
+      >
+        <option value="0"></option>
+        <option value="1">Sort increasing</option>
+        <option value="2">Sort decreasing</option>
+        <option value="3">Find max</option>
+        <option value="4">Find min</option>
+        <option value="5">Find sum</option>
+        <option value="6">Find mean</option>
+        <option value="7">Find median</option>
+        <option value="8">Find deviation</option>
+      </select>
+    </p>
+    <button class="btnAnalyze" onclick="analyzeData()">ANALYZE</button>
+    <p class="output">Your result is :</p>
 
     <script src="day-1 modified.js"></script>
   </body>
