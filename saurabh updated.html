@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="data" style="font-size: 20px"
+      >Enter your array (space-separated values) :</label
+    >
+    <input class="input" type="text" />
+    <br /><br />
+    <button class="btnSubmit">Submit</button>
+    <br />
+
+    <p style="font-size: 20px">
+      Select your desired operation :
+      <select
+        name="operation"
+        class="dropdown"
+        style="height: 40px"
+        width="60px"
+      >
+        <option value="0"></option>
+        <option value="1">Sort increasing</option>
+        <option value="2">Sort decreasing</option>
+        <option value="3">Find max</option>
+        <option value="4">Find min</option>
+        <option value="5">Find sum</option>
+        <option value="6">Find mean</option>
+        <option value="7">Find median</option>
+        <option value="8">Find deviation</option>
+      </select>
+    </p>
+
+    <div class="output">
+      <p>Your answer is :</p>
+    </div>
+
+    <script src="assign.js"></script>
+  </body>
+</html>
